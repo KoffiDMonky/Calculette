@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 3 components : écran , clavier , historique -->
+<!-- deadline : 2 nov 8h30 -->
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Ultimate calculator over 9000</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Import Styles -->
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <!-- Import Vue.js -->
+  <script src="./assets/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- Title -->
+    <div class="nav-bar">Ultimate calculator over 9000</div>
+
+    <!-- Neon mode button -->
+    <label class="switch">
+      <input type="checkbox" v-model="neon" @change="style">
+      <span class="slider"><span class="neon">neon</span></span>
+    </label>
+
+    <!-- Calculator -->
+
+    <div class="calculator">
+
+      <div class="wrap">
+
+        <!-- Screen component -->
+
+        <screen 
+          :current="current" 
+          :result="calc" 
+          :validated="validated.operation">
+        </screen>
+
+        <!-- Keyboard component -->
+
+        <keyboard @push="getKey"></keyboard>
+
+      </div>
+
+      <div 
+        class="rack" 
+        :class="showHistory && 'show'">
+
+        <!-- Histories component -->
+        
+        <histories 
+          :histories="histories" 
+          :class="showHistory && 'show'" 
+          @old-ope="pushOldOpe"></histories>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Import App -->
+  <script src="./main.js"></script>
+  <!-- Import Screen -->
+  <script src="./components/screen.js"></script>
+  <!-- Import Keyboard -->
+  <script src="./components/keyboard.js"></script>
+  <!-- Import Histories -->
+  <script src="./components/histories.js"></script>
+
+  <!-- Mount App -->
+  <script>
+    const calculator = app.mount("#app");
+  </script>
+
+</body>
+
+</html>
